@@ -2,7 +2,7 @@ require 'yaml'
 require 'ostruct'
 require 'monitor'
  
-class << String
+class String
   
   # Allows various forms of string interpolation.
   # Initially intended to make it easier to dynamically replace YAML config values;
@@ -39,17 +39,16 @@ class << String
       end
     elsif args.is_a?(Hash)
       if in_place
-        args.each {|k, v| self.gsub!(/#\{#{k.to_s}\}/i, v)}
+        args.each {|k, v| self.gsub!(/\{#{k.to_s}\}/i, v)}
       else
         new_string = self
-        args.each {|k, v| new_string = new_string.gsub(/#\{#{k.to_s}\}/i, v.to_s)}
+        args.each {|k, v| new_string = new_string.gsub(/\{#{k.to_s}\}/i, v.to_s)}
         return new_string
       end
     end
     
     return self
   end
-  
 end
 
 class Fig
@@ -64,7 +63,7 @@ class Fig
     @@lock.synchronize do
       unless @@yaml_interpolated
         # loop until all replacements are complete
-        while @@yaml.to_s =~ /#\{config:/i
+        while @@yaml.to_s =~ /\{fig:/i
           @@yaml.each {|key, value| interpolate_setting(value) }
         end
         @@yaml_interpolated = true
@@ -159,11 +158,11 @@ private
   # replacing the "config" placeholder with the actual value from elsewhere in the config file.  
   # 
   # The following YAML config example will implicitly replace
-  # #{config:interpolation_example.name} with "Nathan Hopkins":
+  # #{fig:interpolation_example.name} with "Nathan Hopkins":
   #  
   #  interpolation_example:
   #    name: Nathan Hopkins
-  #    message: "This is a test! Hello #{config:interpolation_example.name}"
+  #    message: "This is a test! Hello #{fig:interpolation_example.name}"
   #
   # NOTE: This functionality is intended to simplify dynamic configs.
   # NOTE: You can include as many replacements in a setting as you like.
@@ -174,17 +173,17 @@ private
     if value.is_a?(Hash)
       value.each {|k,v| interpolate_setting(v) } 
     elsif value.is_a?(String)
-      pattern = /\#\{config:/i
+      pattern = /\{fig:/i
       start = value.index(pattern, 0)
       replace = {}
       
       while start
         finish = value.index(/\}/, start)
-        key = value[(start + 2)..(finish - 1)]
-        replace[key] = eval("@@yaml['#{key.sub(/^config:/i, "").gsub(/\./, "']['")}'].to_s")
+        key = value[(start + 1)..(finish - 1)]
+        replace[key] = eval("@@yaml['#{key.sub(/^fig:/i, "").gsub(/\./, "']['")}'].to_s")  
         start = value.index(pattern, finish)
       end
-     
+      
       value.interpolate(replace, true)
     end
   end
