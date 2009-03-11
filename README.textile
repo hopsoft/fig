@@ -9,4 +9,4 @@ screencast that demonstrates how to use Fig.
 _More documentation coming soon..._
 
 
-Copyright (c) 2008 [Nathan Hopkins], released under the MIT license
+Copyright (c) 2008 Nathan Hopkins, released under the MIT license
