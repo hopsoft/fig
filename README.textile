@@ -1,0 +1,12 @@
+h2. Fig
+
+Fig is a simple and useful way to add additional configuration to your 
+Rails application.
+
+"Click here":http://www.screencast.com/t/I8ezeJ9Txg to view a quick 
+screencast that demonstrates how to use Fig.
+
+More documentation coming soon...
+
+
+Copyright (c) 2008 [Nathan Hopkins], released under the MIT license
