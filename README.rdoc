@@ -1,11 +1,11 @@
-h2. Fig
+=Fig
 
-h3. Just made some significant changes.  I will be upating the docs and tutorial videos soon.
+==Just made some significant changes.  I will be upating the docs and tutorial videos soon.
 
 DRY up those magic numbers and hard coded strings into something more managable.  
 Fig is the smart way to manage the stuff that really belongs in a config file... not scattered around your codebase.
 
-"Click here":http://www.screencast.com/t/I8ezeJ9Txg to view a quick 
+Click here[:http://www.screencast.com/t/I8ezeJ9Txg] to view a quick
 screencast that demonstrates how to use Fig.
 
 _More documentation coming soon..._
