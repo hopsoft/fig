@@ -1,5 +1,7 @@
 h2. Fig
 
+h3. Just made some significant changes.  I will be upating the docs and tutorial videos soon.
+
 DRY up those magic numbers and hard coded strings into something more managable.  
 Fig is the smart way to manage the stuff that really belongs in a config file... not scattered around your codebase.
 
