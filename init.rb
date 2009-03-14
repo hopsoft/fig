@@ -1,2 +1,2 @@
-# Include hook code here
-require "fig"
+require 'string'
+require 'fig'
