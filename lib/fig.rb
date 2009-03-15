@@ -1,6 +1,6 @@
 require 'yaml'
 require 'ostruct'
-require 'monitor'
+require File.dirname(__FILE__) + '/string'
 
 class Fig
 
