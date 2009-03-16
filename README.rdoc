@@ -21,6 +21,7 @@ The primary features are:
 * YAML access to configuration settings
 * Safe options to request settings that may not exist
 * Interpolation to help DRY up configuration files through reuse of settings
+* Thread safe
 
 ==How
 

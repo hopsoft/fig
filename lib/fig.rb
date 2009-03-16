@@ -1,25 +1,39 @@
 require 'yaml'
 require 'ostruct'
+require 'thread'
 require File.dirname(__FILE__) + '/string'
 
 class Fig
-
+ 
   # Constructor...
   #
   # ===Params
   # * *file_path* - Path to the config file that should be loaded.
   def initialize(file_path)
+    @lock = Mutex.new
     @file_path = file_path
     load
   end
 
   # Returns the config file file as a YAML Hash.
-  attr_reader :yaml
+  def yaml
+    copy = {}
+    @lock.synchronize do
+      copy.merge!(@yaml)
+    end
+    copy
+  end
 
 
   # Returns an OpenStruct object representation of the config file.
   # This allows you to access config settings with dot notation.
-  attr_reader :settings
+  def settings
+    copy = OpenStruct.new
+    @lock.synchronize do 
+      copy.marshal_load(@settings.marshal_dump)
+    end
+    copy
+  end
 
   # The safest way to get a config setting.
   # Requesting a non-exsisting key, will simply return a nil value instead of raising an error.
@@ -33,13 +47,17 @@ class Fig
   # *Returns* The value of the config setting requested.
   #   This may be the value itself or an OpenStruct containing child args
   def get_setting(key)
-    setting = settings
-    keys = key.to_s.downcase.split(/\./)
+    setting = nil
 
-    keys.each do |k|
-      item = eval("setting.#{k}")
-      return nil unless item
-      setting = item
+    @lock.synchronize do
+      setting = @settings
+      keys = key.to_s.downcase.split(/\./)
+
+      keys.each do |k|
+        item = eval("setting.#{k}")
+        return nil unless item
+        setting = item
+      end
     end
 
     setting
@@ -48,10 +66,12 @@ class Fig
   # Loads the config file and builds the internal Fig objects.
   # Can be used to reload the file when changes have been made.
   def load
-    @yaml = YAML.load_file(@file_path)
-    @yaml.each {|k, v| interpolate_setting(v)}
-    @settings = OpenStruct.new
-    add_hash(@settings, @yaml)
+    @lock.synchronize do
+      @yaml = YAML.load_file(@file_path)
+      @yaml.each {|k, v| interpolate_setting(v)}
+      @settings = OpenStruct.new
+      add_hash(@settings, @yaml)
+    end
   end
 
 private
