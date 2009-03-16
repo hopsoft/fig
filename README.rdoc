@@ -64,7 +64,7 @@ Second, install the Gem.
 Note: Reuse settings in your YAML file like so:
   name: Nathan Hopkins
   message: {fig:name} says hello.
-
+Ruby:
   puts APP_CONFIG.get_setting('message')
   # outputs -> Nathan Hopkins says hello.
 
