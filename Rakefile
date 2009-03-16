@@ -1,6 +1,6 @@
 require 'echoe'
 
-Echoe.new('fig', '0.8.3') do |p|
+Echoe.new('fig', '0.8.4') do |p|
   p.description = "The smart way to manage configuration settings for your Ruby applications."
   p.url = "http://github.com/hopsoft/fig"
   p.author = "Nathan Hopkins, Hopsoft LLC"

@@ -1,9 +1,9 @@
 require 'test/unit'
 require 'fileutils'
-require File.dirname(__FILE__) + '/../lib/fig'
+require File.dirname(__FILE__) + '/../lib/hopsoft/fig'
 
 class FigTest < Test::Unit::TestCase
-  @@fig = Fig.new(File.dirname(__FILE__) + '/test.yml')
+  @@fig = Hopsoft::Fig.new(File.dirname(__FILE__) + '/test.yml')
   
   def test_yaml_values
     assert @@fig.yaml
