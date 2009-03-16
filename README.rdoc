@@ -1,11 +1,59 @@
 =Fig
 
-==Just made some significant changes.  I will be upating the docs and tutorial videos soon.
-
 DRY up those magic numbers and hard coded strings into something more managable.  
-Fig is the smart way to manage the stuff that really belongs in a config file... not scattered around your codebase.
+Fig is the smart way to manage stuff that really belongs in a config file instead of scattered throughout your code.
 
-More documentation coming soon...
+==Why
+
+I know that Ruby is a dynamic language and that hard coded strings and magic numbers aren't as big a deal, but...
+it's still good practice to have a centralized place to hold certain settings.
+
+Often times I would create a globally available Hash to store this stuff, but I've always wanted something more powerful and elegant.
+
+
+==What
+
+Fig is a simple to use configuration management tool for Ruby applications and libraries.  
+
+The primary features are: 
+* Multiple configuration files
+* Dynamic updating and re-loading of configuration files
+* Simple dot-notation access to configuration settings
+* YAML access to configuration settings
+* Safe options to request settings that may not exist
+* Interpolation to help DRY up configuration files through reuse of settings
+
+==How
+
+The simplest way to get started is to watch the 10 minute tutorial video.
+
+
+===Installation
+
+Fig is availabe as both a Gem and as a Rails Plugin.
+
+*To install as a Gem:*
+
+First, be sure that Github has been added as a gem source. (This only needs to be done once.)
+  gem sources -a http://gems.github.com
+
+Second, install the Gem.
+  sudo gem install hopsoft-fig
+
+*To install as a Rails Plugin:*
+  script/plugin install git://github.com/hopsoft/fig.git
+
+
+===Usage
+1. Create a YAML file that will serve as one of the configuration files you plan to use.  In a Rails application, I usually create the file config/app.yml, but you can name the file anything you like and can save it to any location within your appliation or library.
+2. Require Fig either explicitly or implicitly.
+  # implicit
+  require 'hopsoft/fig'
+  # explicit
+  gem 'hopsoft-fig'
+
+
+
 
 
 Copyright (c) 2008 Hopsoft LLC, released under the MIT license
