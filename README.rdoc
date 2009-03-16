@@ -25,7 +25,8 @@ The primary features are:
 
 ==How
 
-The simplest way to get started is to watch the 10 minute tutorial video.
+The simplest way to get started is to watch the 10 minute tutorial.
+
 
 
 ===Installation
@@ -45,13 +46,20 @@ Second, install the Gem.
 
 
 ===Usage
-1. Create a YAML file that will serve as one of the configuration files you plan to use.  In a Rails application, I usually create the file config/app.yml, but you can name the file anything you like and can save it to any location within your appliation or library.
-2. Require Fig either explicitly or implicitly.
+#. Create a YAML file that will serve as one of the configuration files you plan to use.  In a Rails application, I usually create the file config/app.yml, but you can name the file anything you like and can save it to any location within your appliation or library.
+#. Require Fig either explicitly or implicitly.  In a Rails application, I generally do this in environment.rb.
   # implicit
   require 'hopsoft/fig'
   # explicit
   gem 'hopsoft-fig'
-
+#. Instantiate a Fig object that is globally available to your application.  In a Rails application, I generally do this in environment.rb.
+  APP_CONFIG = Fig.new(RAILS_ROOT + '/config/app.yml')
+#. Start using your settings.
+  puts APP_CONFIG.settings.message
+  puts APP_CONFIG.yaml['message']
+  puts APP_CONFIG.get_setting('message')
+  puts APP_CONFIG.get_setting('some.nested.setting.that.may.not.exist') # returns nil instead of an error when it the setting doesn't exist
+  
 
 
 
