@@ -1,9 +1,9 @@
 require 'echoe'
 
-Echoe.new('fig', '0.8.1') do |p|
+Echoe.new('fig', '0.8.2') do |p|
   p.description = "The smart way to manage configuration settings for your Ruby applications."
   p.url = "http://github.com/natehop/fig"
-  p.author = "Nathan Hopkins"
+  p.author = "Nathan Hopkins, Hopsoft LLC"
   p.email = "natehop@gmail.com"
   p.ignore_pattern = ["nbproject*"]
   p.development_dependencies = []

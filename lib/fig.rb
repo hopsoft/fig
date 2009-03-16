@@ -66,12 +66,17 @@ class Fig
   # Loads the config file and builds the internal Fig objects.
   # Can be used to reload the file when changes have been made.
   def load
-    @lock.synchronize do
-      @yaml = YAML.load_file(@file_path)
-      @yaml.each {|k, v| interpolate_setting(v)}
-      @settings = OpenStruct.new
-      add_hash(@settings, @yaml)
+    yaml = YAML.load_file(@file_path)
+    yaml.each {|k, v| interpolate_setting(yaml, v)}
+    settings = OpenStruct.new
+    add_hash(settings, yaml)
+
+    @lock.synchronize do  
+      @yaml = yaml
+      @settings = settings
     end
+  rescue
+    puts "Failed to load file: #{@file_path}\n#{$!}"
   end
 
 private
@@ -86,9 +91,9 @@ private
   #
   # ===Params
   # * *value* [_Object_] The value to interpolate.
-  def interpolate_setting(value)
+  def interpolate_setting(yaml, value)
     if value.is_a?(Hash)
-      value.each {|k,v| interpolate_setting(v) } 
+      value.each {|k,v| interpolate_setting(yaml, v) }
     elsif value.is_a?(String)
       pattern = /\{fig:/i
       start = value.index(pattern, 0)
@@ -97,7 +102,7 @@ private
       while start
         finish = value.index(/\}/, start)
         key = value[(start + 1)..(finish - 1)]
-        replace[key] = eval("@yaml['#{key.sub(/^fig:/i, "").gsub(/\./, "']['")}'].to_s")  
+        replace[key] = eval("yaml['#{key.sub(/^fig:/i, "").gsub(/\./, "']['")}'].to_s")  
         start = value.index(pattern, finish)
       end
       

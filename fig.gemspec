@@ -2,10 +2,10 @@
 
 Gem::Specification.new do |s|
   s.name = %q{fig}
-  s.version = "0.8.1"
+  s.version = "0.8.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Nathan Hopkins"]
+  s.authors = ["Nathan Hopkins, Hopsoft LLC"]
   s.date = %q{2009-03-15}
   s.description = %q{The smart way to manage configuration settings for your Ruby applications.}
   s.email = %q{natehop@gmail.com}
