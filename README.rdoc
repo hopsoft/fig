@@ -1,7 +1,6 @@
 =Fig
 
-DRY up those magic numbers and hard coded strings into something more managable.  
-Fig is the smart way to manage stuff that really belongs in a config file instead of scattered throughout your code.
+====DRY up those magic numbers and hard coded strings into something more managable.  Fig is the smart way to manage stuff that really belongs in a config file instead of scattered throughout your code.
 
 ==Why
 
@@ -33,7 +32,7 @@ The simplest way to get started is to watch the 10 minute tutorial.
 
 Fig is availabe as both a Gem and as a Rails Plugin.
 
-<b>To install as a Gem:</b>
+====To install as a Gem:
 
 First, be sure that Github has been added as a gem source. (This only needs to be done once.)
   gem sources -a http://gems.github.com
@@ -41,25 +40,27 @@ First, be sure that Github has been added as a gem source. (This only needs to b
 Second, install the Gem.
   sudo gem install hopsoft-fig
 
-<b>To install as a Rails Plugin:</b>
+====To install as a Rails Plugin:
   script/plugin install git://github.com/hopsoft/fig.git
 
 
 ===Usage
-1. Create a YAML file that will serve as one of the configuration files you plan to use.  In a Rails application, I usually create the file config/app.yml, but you can name the file anything you like and can save it to any location within your appliation or library.
-2. Require Fig either explicitly or implicitly.  In a Rails application, I generally do this in environment.rb.
-  # implicit
+<ol>
+<li>Create a YAML file that will serve as one of the configuration files you plan to use.  In a Rails application, I usually create the file config/app.yml, but you can name the file anything you like and can save it to any location within your appliation or library.</li>
+<li>Require Fig either explicitly or implicitly.  In a Rails application, I generally do this in environment.rb.
+  <pre><code># implicit
   require 'hopsoft/fig'
   # explicit
-  gem 'hopsoft-fig'
-3. Instantiate a Fig object that is globally available to your application.  In a Rails application, I generally do this in environment.rb.
-  APP_CONFIG = Fig.new(RAILS_ROOT + '/config/app.yml')
-4. Start using your settings.
-  puts APP_CONFIG.settings.message
+  gem 'hopsoft-fig'</code></pre></li>
+<li>Instantiate a Fig object that is globally available to your application.  In a Rails application, I generally do this in environment.rb.
+  <pre><code>APP_CONFIG = Fig.new(RAILS_ROOT + '/config/app.yml')</code></pre></li>
+<li>Start using your settings.
+  <pre><code>puts APP_CONFIG.settings.message
   puts APP_CONFIG.yaml['message']
   puts APP_CONFIG.get_setting('message')
   # returns nil instead of an error when it the setting doesn't exist
-  puts APP_CONFIG.get_setting('some.nested.setting.that.may.not.exist') 
+  puts APP_CONFIG.get_setting('some.nested.setting.that.may.not.exist')</code></pre></li>
+</ol>
   
 Reuse settings in your YAML file like so:
   name: Nathan Hopkins
