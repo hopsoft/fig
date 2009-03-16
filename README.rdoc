@@ -4,10 +4,10 @@
 
 ==Why
 
-I know that Ruby is a dynamic language and that hard coded strings and magic numbers aren't as big a deal, but...
+I know that Ruby is a dynamic language and that hard coded values aren't as big a deal, but...
 it's still good practice to have a centralized place to hold certain settings.
 
-Often times I would create a globally available Hash to store this stuff, but I've always wanted something more powerful and elegant.
+I used to create a globally available Hash to store this stuff, but have always wanted something more powerful and elegant.
 
 
 ==What
