@@ -55,7 +55,7 @@ Require Fig either explicitly or implicitly.  In a Rails application, I generall
   gem 'hopsoft-fig'
 
 Instantiate a Fig object that is globally available to your application.  In a Rails application, I generally do this in environment.rb.
-  APP_CONFIG = Fig.new(RAILS_ROOT + '/config/app.yml')
+  APP_CONFIG = Hopsoft::Fig.new(RAILS_ROOT + '/config/app.yml')
 
 Start using your settings.
   puts APP_CONFIG.settings.message
