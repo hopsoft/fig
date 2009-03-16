@@ -45,27 +45,28 @@ Second, install the Gem.
 
 
 ===Usage
-<ol>
-<li>Create a YAML file that will serve as one of the configuration files you plan to use.  In a Rails application, I usually create the file config/app.yml, but you can name the file anything you like and can save it to any location within your appliation or library.</li>
-<li>Require Fig either explicitly or implicitly.  In a Rails application, I generally do this in environment.rb.
-  <pre><code># implicit
+Create a YAML file that will serve as one of the configuration files you plan to use.  In a Rails application, I usually create the file config/app.yml, but you can name the file anything you like and can save it to any location within your appliation or library.
+
+Require Fig either explicitly or implicitly.  In a Rails application, I generally do this in environment.rb.
+  # implicit
   require 'hopsoft/fig'
   # explicit
-  gem 'hopsoft-fig'</code></pre></li>
-<li>Instantiate a Fig object that is globally available to your application.  In a Rails application, I generally do this in environment.rb.
-  <pre><code>APP_CONFIG = Fig.new(RAILS_ROOT + '/config/app.yml')</code></pre></li>
-<li>Start using your settings.
-  <pre><code>puts APP_CONFIG.settings.message
+  gem 'hopsoft-fig'
+
+Instantiate a Fig object that is globally available to your application.  In a Rails application, I generally do this in environment.rb.
+  APP_CONFIG = Fig.new(RAILS_ROOT + '/config/app.yml')
+
+Start using your settings.
+  puts APP_CONFIG.settings.message
   puts APP_CONFIG.yaml['message']
   puts APP_CONFIG.get_setting('message')
   # returns nil instead of an error when it the setting doesn't exist
-  puts APP_CONFIG.get_setting('some.nested.setting.that.may.not.exist')</code></pre></li>
-</ol>
+  puts APP_CONFIG.get_setting('some.nested.setting.that.may.not.exist')
   
 Reuse settings in your YAML file like so:
   name: Nathan Hopkins
   message: {fig:name} says hello.
-Ruby:
+ 
   puts APP_CONFIG.get_setting('message')
   # outputs -> Nathan Hopkins says hello.
 
