@@ -1,6 +1,6 @@
 =Fig
 
-====DRY up those magic numbers and hard coded strings into something more managable.  Fig is the smart way to manage stuff that really belongs in a config file instead of scattered throughout your code.
+===DRY up those magic numbers and hard coded strings into something more managable.  Fig is the smart way to manage stuff that really belongs in a config file instead of scattered throughout your code.
 
 ==Why
 
@@ -63,7 +63,7 @@ Start using your settings.
   # returns nil instead of an error when the setting doesn't exist
   puts APP_CONFIG.get_setting('some.nested.setting.that.may.not.exist')
   
-Reuse settings in your YAML file like so:
+Reuse settings in your YAML file (This is a great way to apply the DRY principle to your configuration settings):
   name: Nathan Hopkins
   message: {fig:name} says hello.
  
@@ -73,6 +73,5 @@ Reuse settings in your YAML file like so:
 Update the YAML file and load the changes without restarting your application.
   APP_CONFIG.load
 
-This is a great way to apply the DRY principle to your configuration settings.
 
 Copyright (c) 2008 Hopsoft LLC, released under the MIT license
