@@ -1,2 +1,2 @@
 require 'string'
-require 'fig'
+require 'hopsoft/fig'
