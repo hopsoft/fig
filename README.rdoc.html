@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>File: README.rdoc [Hopsoft::Fig]</title>
+
+	<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet" />
+
+	<script src="./js/jquery.js" type="text/javascript" 
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript" 
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript" 
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript" 
+		charset="utf-8"></script>
+</head>
+	
+<body class="file">
+  <div id="metadata">
+		<div id="project-metadata">
+			
+			
+			<div id="fileindex-section" class="section project-section">
+				<h3 class="section-header">Files</h3>
+				<ul>
+				
+					<li class="file"><a href="./README.rdoc.html">README.rdoc</a></li>
+				
+				</ul>
+			</div>
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index 
+					<span class="search-toggle"><img src="./images/find.png" 
+						height="16" width="16" alt="[+]" 
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value="" 
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+				
+					<li><a href="./Hopsoft.html">Hopsoft</a></li>
+				
+				
+					<li><a href="./Hopsoft/Fig.html">Hopsoft::Fig</a></li>
+				
+				
+					<li><a href="./String.html">String</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+			
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1>Fig</h1>
+<h3>DRY up those magic numbers and hard coded strings into something more managable. Fig is the smart way to manage stuff that really belongs in a config file instead of scattered throughout your code.</h3>
+<h2>Why</h2>
+<p>
+I know that Ruby is a dynamic language and that hard coded values
+aren&#8217;t as big a deal, but... it&#8217;s still good practice to have a
+centralized place to hold certain settings.
+</p>
+<p>
+I used to create a globally available Hash to store this stuff, but have
+always wanted something more powerful and elegant.
+</p>
+<h2>What</h2>
+<p>
+Fig is a simple to use configuration management tool for Ruby applications
+and libraries.
+</p>
+<p>
+The primary features are:
+</p>
+<ul>
+<li>Multiple configuration files
+
+</li>
+<li>Dynamic updating and re-loading of configuration files
+
+</li>
+<li>Simple dot-notation access to configuration settings
+
+</li>
+<li>YAML access to configuration settings
+
+</li>
+<li>Safe options to request settings that may not exist
+
+</li>
+<li>Interpolation to help DRY up configuration files through reuse of settings
+
+</li>
+<li>Thread safe
+
+</li>
+</ul>
+<h2>How</h2>
+<p>
+The simplest way to get started is to watch the 10 minute tutorial.
+</p>
+<h3>Installation</h3>
+<p>
+Fig is availabe as both a Gem and as a Rails Plugin.
+</p>
+<h4>To install as a Gem:</h4>
+<p>
+First, be sure that Github has been added as a gem source. (This only needs
+to be done once.)
+</p>
+<pre>
+  gem sources -a http://gems.github.com
+</pre>
+<p>
+Second, install the Gem.
+</p>
+<pre>
+  sudo gem install hopsoft-fig
+</pre>
+<h4>To install as a Rails Plugin:</h4>
+<pre>
+  script/plugin install git://github.com/hopsoft/fig.git
+</pre>
+<h3>Usage</h3>
+<p>
+Create a YAML file that will serve as one of the configuration files you
+plan to use. In a Rails application, I usually create the file
+config/app.yml, but you can name the file anything you like and can save it
+to any location within your appliation or library.
+</p>
+<p>
+Require Fig either explicitly or implicitly. In a Rails application, I
+generally do this in environment.rb. Note: this step isn&#8217;t required
+if you installed as a Rails plugin.
+</p>
+<pre>
+  # implicit
+  require 'hopsoft/fig'
+  # explicit
+  gem 'hopsoft-fig'
+</pre>
+<p>
+Instantiate a Fig object that is globally available to your application. In
+a Rails application, I generally do this in environment.rb.
+</p>
+<pre>
+  APP_CONFIG = Hopsoft::Fig.new(RAILS_ROOT + '/config/app.yml')
+</pre>
+<p>
+Start using your settings.
+</p>
+<pre>
+  puts APP_CONFIG.settings.message
+  puts APP_CONFIG.yaml['message']
+  puts APP_CONFIG.get_setting('message')
+  # returns nil instead of an error when the setting doesn't exist
+  puts APP_CONFIG.get_setting('some.nested.setting.that.may.not.exist')
+</pre>
+<p>
+Reuse settings in your YAML file (This is a great way to apply the DRY
+principle to your configuration settings):
+</p>
+<pre>
+  name: Nathan Hopkins
+  message: Hello from {fig:name}.
+
+  puts APP_CONFIG.get_setting('message')
+  # outputs -&gt; Hello from Nathan Hopkins.
+</pre>
+<p>
+Update the YAML file and load the changes without restarting your
+application.
+</p>
+<pre>
+  APP_CONFIG.load
+</pre>
+<p>
+Copyright &#169; 2008 <a href="Hopsoft.html">Hopsoft</a> LLC, released
+under the MIT license
+</p>
+
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish 
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+</body>
+</html>
+
