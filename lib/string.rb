@@ -1,21 +1,22 @@
 class String
 
   # Allows various forms of string interpolation.
-  # Addd to make it easier to dynamically replace YAML config values;
-  # howerver, this will likely come in handy elsewhere.
-  #
-  # Examples:
+  # Originally designed to reuse YAML config values; howerver,
+  # this will likely come in handy elsewhere.
+  # 
+  # 
   #   "Hello! My name is ?".interpolate("Nathan Hopkins")
   #   "Hello! My first name is ? and my last name is ?".interpolate(["Nathan", "Hopkins"])
-  #   'Hello! My first name is {first_name} and my last name is {last_name}'.interpolate(:first_name => "Nathan", :last_name => "Hopkins")
+  #   'Hello! My first name is {first_name} and my last name is {last_name}'.interpolate(:first_name => "Nathan",
+  #     :last_name => "Hopkins")
+  # 
   #
-  # ===Params
-  # * *args* [Symbol, String, Array, Hash] The value(s) used to replace segments of the string.
-  # * *in_place* [Boolean] Indicates if the value should edited in place.
-  #   Be careful when doing this, you may end up with unexpected results!
+  # ====Params
+  # * +args+ - The value(s) used to replace segments of the string.
+  # * +in_place+ - Indicates if the value should edited in place.  Be careful when doing this, you may end up with unexpected results!
+  # 
   #
-  # ===Returns
-  # The new string after interpolation.
+  # Returns the new string after interpolation.
   def interpolate(args, in_place=false)
     args = [args] unless args.is_a?(Array) || args.is_a?(Hash)
 

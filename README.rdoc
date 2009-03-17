@@ -2,12 +2,14 @@
 
 ===DRY up those magic numbers and hard coded strings into something more managable.  Fig is the smart way to manage stuff that really belongs in a config file instead of scattered throughout your code.
 
+Here are the Rdocs[http://hopsoft.github.com/fig/README.rdoc.html]
+Video tutorial coming soon...
+
 ==Why
 
-I know that Ruby is a dynamic language and that hard coded values aren't as big a deal, but...
-it's still good practice to have a centralized place to hold certain settings.
+Even though Ruby is a dynamic language and hard coded values aren't as big a deal, it's still good practice to have a centralized place to hold certain settings.
 
-I used to create a globally available Hash to store this stuff, but have always wanted something more powerful and elegant.
+In the past I would use a globally available Hash to store this stuff, but have always wanted something more powerful and elegant.
 
 
 ==What
@@ -66,10 +68,10 @@ Start using your settings.
   
 Reuse settings in your YAML file (This is a great way to apply the DRY principle to your configuration settings):
   name: Nathan Hopkins
-  message: {fig:name} says hello.
+  message: Hello from {fig:name}.
  
   puts APP_CONFIG.get_setting('message')
-  # outputs -> Nathan Hopkins says hello.
+  # outputs -> Hello from Nathan Hopkins.
 
 Update the YAML file and load the changes without restarting your application.
   APP_CONFIG.load

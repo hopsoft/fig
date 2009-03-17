@@ -8,8 +8,8 @@ module Hopsoft
  
     # Constructor...
     #
-    # ===Params
-    # * *file_path* - Path to the config file that should be loaded.
+    # ====Params
+    # * +file_path+ - Path to the config file that should be loaded.
     def initialize(file_path)
       @lock = Mutex.new
       @file_path = file_path
@@ -27,7 +27,7 @@ module Hopsoft
 
 
     # Returns an OpenStruct object representation of the config file.
-    # This allows you to access config settings with dot notation.
+    # This allows access to config settings via dot notation.
     def settings
       copy = OpenStruct.new
       @lock.synchronize do
@@ -39,14 +39,12 @@ module Hopsoft
     # The safest way to get a config setting.
     # Requesting a non-exsisting key, will simply return a nil value instead of raising an error.
     #
-    # Examples:
-    # Fig.get_setting('some.nested.setting')
+    #   Fig.get_setting('some.nested.setting')
     #
-    # ===Params
-    # * *key* - A case insensivie config key
+    # ====Params
+    # * +key+ - A case insensivie config key.
     #
-    # *Returns* The value of the config setting requested.
-    #   This may be the value itself or an OpenStruct containing child args
+    # Returns the value of the config setting requested.  This may be the value itself or an OpenStruct containing child args.
     def get_setting(key)
       setting = nil
 
@@ -82,16 +80,16 @@ module Hopsoft
 
     private
 
-    # Invoked recursively to implicitly interpolate all settings for the passed value.
-    # Config values that contain the pattern /{fig:/ are implicitly interpolated,
-    # replacing the "fig" placeholder with the actual value from elsewhere in the config file.
+    # Interpolates all settings for the passed value.
+    # Config values that contain the pattern /{fig:/ are interpolated replacing the "fig"
+    # placeholder with the actual value from elsewhere in the config file.
     #
     # Example:
     #   name: Nathan Hopkins
-    #   message: "This is a test! Hello #{fig:example.name}"
+    #   message: "This is a test! Hello #{fig:example.name}."
     #
-    # ===Params
-    # * *value* [_Object_] The value to interpolate.
+    # ====Params
+    # * +value+ - The value to interpolate.
     def interpolate_setting(yaml, value)
       if value.is_a?(Hash)
         value.each {|k,v| interpolate_setting(yaml, v) }
@@ -114,9 +112,9 @@ module Hopsoft
     # Recursively adds a hash to an OpenStruct object, ultimately creating a complete OpenStruct object with attributes
     # for all key/value pairs in the Hash.
     #
-    # ===Params
-    # * *obj* - The OpenStruct object to add Hash args to.
-    # * *hash* - The Hash to pull args from.
+    # ====Params
+    # * +obj+ - The OpenStruct object to add Hash args to.
+    # * +hash+ - The Hash to pull args from.
     def add_hash(obj, hash)
       return unless hash
 
