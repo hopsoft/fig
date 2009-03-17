@@ -48,7 +48,7 @@ Second, install the Gem.
 ===Usage
 Create a YAML file that will serve as one of the configuration files you plan to use.  In a Rails application, I usually create the file config/app.yml, but you can name the file anything you like and can save it to any location within your appliation or library.
 
-Require Fig either explicitly or implicitly.  In a Rails application, I generally do this in environment.rb.
+Require Fig either explicitly or implicitly.  In a Rails application, I generally do this in environment.rb. Note: this step isn't required if you installed as a Rails plugin.
   # implicit
   require 'hopsoft/fig'
   # explicit
