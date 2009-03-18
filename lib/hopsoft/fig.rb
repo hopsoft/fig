@@ -53,7 +53,7 @@ module Hopsoft
         keys = key.to_s.downcase.split(/\./)
 
         keys.each do |k|
-          item = eval("setting.#{k}")
+          item = eval("setting.#{k}") if setting.is_a?(OpenStruct)
           return nil unless item
           setting = item
         end

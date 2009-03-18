@@ -63,6 +63,7 @@ Start using your settings.
   puts APP_CONFIG.settings.message
   puts APP_CONFIG.yaml['message']
   puts APP_CONFIG.get_setting('message')
+
   # returns nil instead of an error when the setting doesn't exist
   puts APP_CONFIG.get_setting('some.nested.setting.that.may.not.exist')
   
