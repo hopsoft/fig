@@ -2,9 +2,7 @@
 
 ===DRY up those magic numbers and hard coded strings into something more managable.  Fig is the smart way to manage stuff that really belongs in a config file instead of scattered throughout your code.
 
-Here are the Rdocs[http://hopsoft.github.com/fig/README.rdoc.html]
-
-Video[http://www.screencast.com/t/2ckQvXrCg0v] overview and tutorial[http://www.screencast.com/t/2ckQvXrCg0v]. Jump to 2 minutes in if you want to dive straight into the tutorial.
+Read the RDocs[http://hopsoft.github.com/fig/README.rdoc.html] or jump right in with the tutorial video[http://www.screencast.com/t/WwhGvspEy].
 
 ==Why
 
@@ -51,32 +49,26 @@ Second, install the Gem.
 ===Usage
 Create a YAML file that will serve as one of the configuration files you plan to use.  In a Rails application, I usually create the file config/app.yml, but you can name the file anything you like and can save it to any location within your appliation or library.
 
-Require Fig either explicitly or implicitly.  In a Rails application, I generally do this in environment.rb. Note: this step isn't required if you installed as a Rails plugin.
-  # implicit
-  require 'hopsoft/fig'
-  # explicit
-  gem 'hopsoft-fig'
-
 Instantiate a Fig object that is globally available to your application.  In a Rails application, I generally do this in environment.rb.
-  APP_CONFIG = Hopsoft::Fig.new(RAILS_ROOT + '/config/app.yml')
+  CONFIG = Hopsoft::Fig.new(RAILS_ROOT + '/config/app.yml')
 
 Start using your settings.
-  puts APP_CONFIG.settings.message
-  puts APP_CONFIG.yaml['message']
-  puts APP_CONFIG.get_setting('message')
+  puts CONFIG.settings.message
+  puts CONFIG.yaml['message']
+  puts CONFIG.get_setting('message')
 
   # returns nil instead of an error when the setting doesn't exist
-  puts APP_CONFIG.get_setting('some.nested.setting.that.may.not.exist')
+  puts CONFIG.get_setting('some.nested.setting.that.may.not.exist')
   
 Reuse settings in your YAML file (This is a great way to apply the DRY principle to your configuration settings):
   name: Nathan Hopkins
   message: Hello from {fig:name}.
  
-  puts APP_CONFIG.get_setting('message')
+  puts CONFIG.get_setting('message')
   # outputs -> Hello from Nathan Hopkins.
 
 Update the YAML file and load the changes without restarting your application.
-  APP_CONFIG.load
+  CONFIG.load
 
 
 Copyright (c) 2008 Hopsoft LLC, released under the MIT license
