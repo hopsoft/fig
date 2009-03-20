@@ -8,7 +8,7 @@ Read the RDocs[http://hopsoft.github.com/fig/README.rdoc.html] or jump right in 
 
 Even though Ruby is a dynamic language and hard coded values aren't as big a deal, it's still good practice to have a centralized place to hold certain settings.
 
-In the past I would use a globally available Hash to store this stuff, but have always wanted something more powerful and elegant.
+In the past I used a global Hash to store this stuff, but have always wanted something more powerful and elegant.
 
 
 ==What
@@ -27,7 +27,6 @@ The primary features are:
 ==How
 
 The simplest way to get started is to watch the 10 minute tutorial.
-
 
 
 ===Installation
