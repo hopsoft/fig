@@ -49,6 +49,10 @@ class FigTest < Test::Unit::TestCase
     assert @@fig.get_setting('some.complete.garbage') == nil
   end
 
+  def test_nested_interpolation
+    assert_equal 'Hi there Nathan Hopkins', @@fig.get_setting('parent.child.message')    
+  end
+
   def test_change_and_reload
     dir_name = File.dirname(__FILE__)
     orig_file = dir_name + '/test.yml'

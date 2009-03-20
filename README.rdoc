@@ -3,7 +3,9 @@
 ===DRY up those magic numbers and hard coded strings into something more managable.  Fig is the smart way to manage stuff that really belongs in a config file instead of scattered throughout your code.
 
 Here are the Rdocs[http://hopsoft.github.com/fig/README.rdoc.html]
-Video tutorial coming soon...
+
+Video overview and tutorial. Jump to 2 minutes in if you want to dive straight into the tutorial.
+<object width="640" height="498"> <param name="movie" value="http://content.screencast.com/users/natehop/folders/hopsoft/media/973f9d87-35b9-4ce9-9732-5ab8270300d7/flvplayer.swf"></param> <param name="quality" value="high"></param> <param name="bgcolor" value="#FFFFFF"></param> <param name="flashVars" value="thumb=http://content.screencast.com/users/natehop/folders/hopsoft/media/973f9d87-35b9-4ce9-9732-5ab8270300d7/FirstFrame.jpg&containerwidth=640&containerheight=498&content=http://content.screencast.com/users/natehop/folders/hopsoft/media/973f9d87-35b9-4ce9-9732-5ab8270300d7/fig2.mp4"></param> <param name="allowFullScreen" value="true"></param> <param name="scale" value="showall"></param> <param name="allowScriptAccess" value="always"></param> <param name="base" value="http://content.screencast.com/users/natehop/folders/hopsoft/media/973f9d87-35b9-4ce9-9732-5ab8270300d7/"></param>  <embed src="http://content.screencast.com/users/natehop/folders/hopsoft/media/973f9d87-35b9-4ce9-9732-5ab8270300d7/flvplayer.swf" quality="high" bgcolor="#FFFFFF" width="640" height="498" type="application/x-shockwave-flash" allowScriptAccess="always" flashVars="thumb=http://content.screencast.com/users/natehop/folders/hopsoft/media/973f9d87-35b9-4ce9-9732-5ab8270300d7/FirstFrame.jpg&containerwidth=640&containerheight=498&content=http://content.screencast.com/users/natehop/folders/hopsoft/media/973f9d87-35b9-4ce9-9732-5ab8270300d7/fig2.mp4" allowFullScreen="true" base="http://content.screencast.com/users/natehop/folders/hopsoft/media/973f9d87-35b9-4ce9-9732-5ab8270300d7/" scale="showall"></embed> </object>
 
 ==Why
 

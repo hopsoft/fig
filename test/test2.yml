@@ -7,3 +7,4 @@ parent:
   name: '{fig:name}'
   child:
     name: Nathan Hopkins
+    message: Hi there {fig:parent.name}
