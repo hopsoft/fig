@@ -246,7 +246,7 @@ itself or an OpenStruct containing child args.
         <span class="ruby-identifier">keys</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/\./</span>)
 
         <span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span>
-          <span class="ruby-identifier">item</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-node">&quot;setting.#{k}&quot;</span>)
+          <span class="ruby-identifier">item</span> = <span class="ruby-identifier">eval</span>(<span class="ruby-node">&quot;setting.#{k}&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">setting</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">OpenStruct</span>)
           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">item</span>
           <span class="ruby-identifier">setting</span> = <span class="ruby-identifier">item</span>
         <span class="ruby-keyword kw">end</span>

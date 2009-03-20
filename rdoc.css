@@ -387,7 +387,6 @@ ul.link-list .type {
 }
 #documentation .method-description p {
 	padding: 0;
-	margin: 1em 0 1em 0;
 }
 #documentation .method-description p + p {
 	margin-bottom: 0.5em;
