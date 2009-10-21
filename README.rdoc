@@ -1,18 +1,73 @@
-= fig2
+=Fig
 
-Description goes here.
+===DRY up those magic numbers and hard coded strings into something more managable.  Fig is the smart way to manage stuff that really belongs in a config file instead of scattered throughout your code.
 
-== Note on Patches/Pull Requests
+Read the RDocs[http://hopsoft.github.com/fig/README.rdoc.html] or jump right in with the tutorial video[http://www.screencast.com/t/WwhGvspEy].
+
+==Why
+
+Even though Ruby is a dynamic language and hard coded values aren't as big a deal, it's still good practice to have a centralized place to hold certain settings.
+
+In the past I used a global Hash to store this stuff, but have always wanted something more powerful and elegant.
+
+
+==What
+
+Fig is a simple to use configuration management tool for Ruby applications and libraries.  
+
+The primary features are: 
+* Multiple configuration files
+* Dynamic updating and re-loading of configuration files
+* Simple dot-notation access to configuration settings
+* YAML access to configuration settings
+* Safe options to request settings that may not exist
+* Interpolation to help DRY up configuration files through reuse of settings
+* Thread safe
+
+==How
+
+The simplest way to get started is to watch the 10 minute tutorial.
+
+
+===Installation
+
+Fig is availabe as both a Gem and as a Rails Plugin.
+
+====To install as a Gem:
+
+First, be sure that Github has been added as a gem source. (This only needs to be done once.)
+  gem sources -a http://gems.github.com
+
+Second, install the Gem.
+  sudo gem install hopsoft-fig
+
+====To install as a Rails Plugin:
+  script/plugin install git://github.com/hopsoft/fig.git
+
+
+===Usage
+Create a YAML file that will serve as one of the configuration files you plan to use.  In a Rails application, I usually create the file config/app.yml, but you can name the file anything you like and can save it to any location within your appliation or library.
+
+Instantiate a Fig object that is globally available to your application.  In a Rails application, I generally do this in environment.rb.
+  CONFIG = Hopsoft::Fig.new(RAILS_ROOT + '/config/app.yml')
+
+Start using your settings.
+  puts CONFIG.settings.message
+  puts CONFIG.yaml['message']
+  puts CONFIG.get_setting('message')
+
+  # returns nil instead of an error when the setting doesn't exist
+  puts CONFIG.get_setting('some.nested.setting.that.may.not.exist')
+  
+Reuse settings in your YAML file (This is a great way to apply the DRY principle to your configuration settings):
+  name: Nathan Hopkins
+  message: Hello from {fig:name}.
  
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but
-   bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+  puts CONFIG.get_setting('message')
+  # outputs -> Hello from Nathan Hopkins.
 
-== Copyright
+Update the YAML file and load the changes without restarting your application.
+  CONFIG.load
 
-Copyright (c) 2009 Nathan Hopkins. See LICENSE for details.
+
+Copyright (c) 2008 Hopsoft LLC, released under the MIT license

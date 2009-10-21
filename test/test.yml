@@ -1,10 +1,10 @@
-name: Jeff Hopkins
+name: Nathan Hopkins
 message: Hello there {fig:name}
 message2: Hello there {fig:name2}
-name2: Marie Hopkins
+name2: Page Hopkins
 list: [a, b, c, d, e, f]
 parent:
   name: '{fig:name}'
   child:
-    name: Nathan Hopkins
+    name: Emma Hopkins
     message: Hi there {fig:parent.name}
