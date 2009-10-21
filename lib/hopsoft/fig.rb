@@ -1,7 +1,7 @@
 require 'yaml'
 require 'ostruct'
 require 'thread'
-require File.dirname(__FILE__) + '/../string'
+require File.join(File.dirname(__FILE__), 'string')
 
 module Hopsoft
   class Fig

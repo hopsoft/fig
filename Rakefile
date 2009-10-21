@@ -4,11 +4,14 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "fig2"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.name = "hopsoft-fig"
+    gem.summary = "Easy & powerful configuration utility"
+    gem.description = <<-DESC
+      Easy & powerful configuration for your Ruby applications.
+      Similar to settingslogic with a slightly different approach and a few more features.
+    DESC
     gem.email = "natehop@gmail.com"
-    gem.homepage = "http://github.com/hopsoft/fig2"
+    gem.homepage = "http://github.com/hopsoft/fig"
     gem.authors = ["Nathan Hopkins"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
@@ -46,7 +49,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "fig2 #{version}"
+  rdoc.title = "fig #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
